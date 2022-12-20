@@ -1,4 +1,8 @@
 import {useState} from "react"
+import Form from "react-bootstrap/Form"
+import Button from "react-bootstrap/Button"
+import 'bootstrap/dist/css/bootstrap.min.css'
+import FormGroup from "react-bootstrap/esm/FormGroup"
 
 function App() {
   const [name, setName] = useState("")
@@ -36,6 +40,10 @@ function App() {
     setSubmit(true)
   }
 
+  const handleSubmitBootstrap = (event) => {
+    event.preventDefault()
+    console.log(event.target)
+  }
   return (
   <div>
     {submit ? <h1>Thank you for submitting your information</h1> :
@@ -58,6 +66,27 @@ function App() {
         <input type="submit" value="Submit"></input>
       </form>
     }
+    <hr />
+    <form onSubmit={handleSubmit}>
+      <Form.Group className="mb-3" controlId="name">
+        <Form.Label>Name</Form.Label>
+        <Form.Control type="text" placeholder="Enter name"/>
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="gender">
+        <Form.Label>Gender</Form.Label>
+        <Form.Select>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </Form.Select>
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="age">
+        <Form.Label>Age</Form.Label>
+        <Form.Control type="number" placeholder="Enter age"/>
+      </Form.Group>
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
+    </form>
     </div>
   );
 }
