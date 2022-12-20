@@ -43,18 +43,18 @@ function App() {
         <label>
           Name: 
           <input name="name" placeholder="Name" type="text" value={name} onChange={handleNameChange}></input>
-        </label>
+        </label><br />
         <label>
           Gender: 
           <select name="gender" value={gender} onChange={handleGenderChange}>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </select>
-        </label>
+        </label><br />
         <label>
           Age:
           <input name="age" placeholder="Age" type="number" value={age} onChange={handleAgeChange}></input>
-        </label>
+        </label><br />
         <input type="submit" value="Submit"></input>
       </form>
     }
