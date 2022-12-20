@@ -4,6 +4,7 @@ function App() {
   const [name, setName] = useState("")
   const [gender, setGender] = useState("")
   const [age, setAge] = useState(0)
+  const [submit, setSubmit] = useState(false)
 
   const handleNameChange = (event) => {
     setName(event.target.value)
@@ -26,15 +27,18 @@ function App() {
     console.log(target.name.value, target.gender.value, target.age.value)
     const headers = {"Content-Type": "application/json"}
     const body = JSON.stringify({"name": target.name.value, "gender": target.gender.value, "age": target.age.value})
-    await (fetch('http://localhost:3002/', {
+    const response = await (fetch('http://localhost:3002/', {
       method: 'POST',
       headers,
       body
       }))
+    console.log(response)
+    setSubmit(true)
   }
 
   return (
-    <div>
+  <div>
+    {submit ? <h1>Thank you for submitting your information</h1> :
       <form onSubmit={handleSubmit}>
         <label>
           Name: 
@@ -53,6 +57,7 @@ function App() {
         </label>
         <input type="submit" value="Submit"></input>
       </form>
+    }
     </div>
   );
 }
