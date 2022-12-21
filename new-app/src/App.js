@@ -1,6 +1,7 @@
 import {useState} from "react"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
+import FormCheck from "react-bootstrap/FormCheck"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import FormGroup from "react-bootstrap/esm/FormGroup"
 
@@ -9,6 +10,7 @@ function App() {
   const [gender, setGender] = useState("")
   const [age, setAge] = useState(0)
   const [submit, setSubmit] = useState(false)
+  const [bootstrap, setBootstrap] = useState(false)
 
   const handleNameChange = (event) => {
     setName(event.target.value)
@@ -44,30 +46,18 @@ function App() {
     event.preventDefault()
     console.log(event.target)
   }
+
+  const handleCheckbox = (event) => {
+    setBootstrap(!bootstrap)
+  }
   return (
   <div>
+    <Form.Group>
+      <Form.Label>Bootstrap?</Form.Label>
+      <Form.Check type="switch" onChange={handleCheckbox}></Form.Check>
+    </Form.Group>
     {submit ? <h1>Thank you for submitting your information</h1> :
-      <form onSubmit={handleSubmit}>
-        <label>
-          Name: 
-          <input name="name" placeholder="Name" type="text" value={name} onChange={handleNameChange}></input>
-        </label><br />
-        <label>
-          Gender: 
-          <select name="gender" value={gender} onChange={handleGenderChange}>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-          </select>
-        </label><br />
-        <label>
-          Age:
-          <input name="age" placeholder="Age" type="number" value={age} onChange={handleAgeChange}></input>
-        </label><br />
-        <input type="submit" value="Submit"></input>
-      </form>
-    }
-    <hr />
-    <form onSubmit={handleSubmit}>
+      bootstrap ? <form onSubmit={handleSubmit}>
       <Form.Group className="mb-3" controlId="name">
         <Form.Label>Name</Form.Label>
         <Form.Control type="text" placeholder="Enter name"/>
@@ -87,6 +77,25 @@ function App() {
         Submit
       </Button>
     </form>
+      : <form onSubmit={handleSubmit}>
+        <label>
+          Name: 
+          <input name="name" placeholder="Name" type="text" value={name} onChange={handleNameChange}></input>
+        </label><br />
+        <label>
+          Gender: 
+          <select name="gender" value={gender} onChange={handleGenderChange}>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </label><br />
+        <label>
+          Age:
+          <input name="age" placeholder="Age" type="number" value={age} onChange={handleAgeChange}></input>
+        </label><br />
+        <input type="submit" value="Submit"></input>
+      </form>
+    }
     </div>
   );
 }
