@@ -52,12 +52,13 @@ function App() {
   }
   return (
   <div>
-    <Form.Group>
-      <Form.Label>Bootstrap?</Form.Label>
-      <Form.Check type="switch" onChange={handleCheckbox}></Form.Check>
-    </Form.Group>
     {submit ? <h1>Thank you for submitting your information</h1> :
-      bootstrap ? <form onSubmit={handleSubmit}>
+    <div>
+      <Form.Group>
+        <Form.Label>Bootstrap?</Form.Label>
+        <Form.Check type="switch" onChange={handleCheckbox}></Form.Check>
+      </Form.Group>
+      {bootstrap ? <form onSubmit={handleSubmit}>
       <Form.Group className="mb-3" controlId="name">
         <Form.Label>Name</Form.Label>
         <Form.Control type="text" placeholder="Enter name"/>
@@ -97,6 +98,8 @@ function App() {
       </form>
     }
     </div>
+    }
+  </div>
   );
 }
 
